@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
  
 import opengraph
-import urllib2
+import urllib.request, urllib.error, urllib.parse
 
 try:
     from bs4 import BeautifulSoup
@@ -34,7 +34,7 @@ def parse_html(html):
 def parse_valid_html(html, ogp_result):
     parse_result = dict()
 
-    for key in ogp_result.keys():
+    for key in list(ogp_result.keys()):
         parse_result[key] = ogp_result[key]
 
     # pop _url
@@ -81,7 +81,7 @@ def parse_valid_url(url, ogp_result):
 
     parse_result = {}
 
-    for key in ogp_result.keys():
+    for key in list(ogp_result.keys()):
         parse_result[key] = ogp_result[key]
 
     # pop _url
@@ -145,8 +145,8 @@ def get_link_rel_shortcut_icon(soup=None):
         for link_tag in link_tags:
             link_tag_rel = link_tag.get('rel')
             if link_tag_rel is not None \
-                and u'shortcut' in link_tag_rel \
-                and u'icon' in link_tag_rel:
+                and 'shortcut' in link_tag_rel \
+                and 'icon' in link_tag_rel:
 
                 img_url = link_tag.get('href')
                 break
@@ -205,10 +205,10 @@ def get_title(html):
 
 
 def get_html(url):
-    raw = urllib2.urlopen(url)
+    raw = urllib.request.urlopen(url)
     html = raw.read()
     return html
 
 
 if __name__ == '__main__':
-    print parse(url='http://facebook.com')
+    print(parse(url='http://facebook.com'))

@@ -1,1 +1,1 @@
-from ExtendedOpenGraph import *
+from .ExtendedOpenGraph import *

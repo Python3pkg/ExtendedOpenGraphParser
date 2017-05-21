@@ -4,7 +4,7 @@
 # encoding: utf-8
 
 import unittest
-import ExtendedOpenGraph
+from . import ExtendedOpenGraph
 
 
 valid_html = """
@@ -81,7 +81,7 @@ class Test(unittest.TestCase):
 
             for url in urls:    
                 ExtendedOpenGraph.parse(url=url)
-        except Exception, e:
+        except Exception as e:
             raise
         else:
             pass
